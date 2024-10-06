@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(90deg, #483e63, #767955);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s infinite ease-in-out;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.248);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(6, 6, 6, 0.43);
+    width: 300px;
+  }
+  
+  .heading {
+    color: white;
+  }
+  
+  .form-toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form-toggle button {
+    width: 50%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.74);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .form-toggle .active {
+    background-color: #483e63;
+    color: white;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+  }
+  
+  .form button {
+    padding: 10px;
+    background-color: #483e63;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: large;
+    margin: 5px;
+  }
+  
+  .form a {
+    color: #483e63;
+    text-decoration: none;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+  
+  .form p {
+    text-align: center;
+  }
+  
+/* Container for input and icon */
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Style the icons */
+.icon {
+  position: absolute;
+  right: 0%;
+  top: 45%;
+  transform: translateY(-50%);
+  color: #483e63;
+}
+
+/* Style the inputs */
+.input-container input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.form input {
+  padding: 10px 6px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+/* Input field glow effect on focus */
+input:focus {
+  outline: none; /* Remove black outline */
+  border: 2px solid #ffffff; /* Dark border */
+  box-shadow: 0 0 8px #483e63; /* Glow effect */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #5a4f7f; /* Slightly lighter color */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
