@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken'); // Import jsonwebtoken
 const router = express.Router();
 require('dotenv').config();
-
+const { ObjectId } = require('mongodb');
 const OTP_EXPIRY = 60 * 1000; // 1 minute in milliseconds
 const JWT_EXPIRY = '1h'; // Token expiry time
 const otpStore = {};
@@ -26,6 +26,7 @@ const verifyToken = (req, res, next) => {
         res.status(400).json({ message: 'Invalid token.' });
     }
 };
+
 
 // Export the router function
 module.exports = (usersCollection) => {
@@ -170,6 +171,41 @@ module.exports = (usersCollection) => {
         }
     });
     
+    router.post('/change-password', verifyToken, async (req, res) => {
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
+    
+        try {
+            // Validate input
+            if (!currentPassword || !newPassword) {
+                return res.status(400).json({ message: 'All fields are required' });
+            }
+    
+            const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
+            if (!user) {
+                return res.status(400).json({ message: 'User not found' });
+            }
+    
+            // Check if the current password is correct
+            const isMatch = await bcrypt.compare(currentPassword, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ message: 'Current password is incorrect' });
+            }
+    
+            // Hash the new password and update it
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+            await usersCollection.updateOne(
+                { _id: new ObjectId(userId) },
+                { $set: { password: hashedPassword } }
+            );
+    
+            res.status(200).json({ message: 'Password changed successfully' });
+        } catch (error) {
+            console.error('Error changing password:', error);
+            res.status(500).json({ message: 'Error changing password' });
+        }
+    });
+
 
     router.get('/protected', verifyToken, (req, res) => {
         res.status(200).json({ message: 'This is a protected route', user: req.user });
