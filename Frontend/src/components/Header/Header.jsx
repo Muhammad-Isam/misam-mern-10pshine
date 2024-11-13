@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios to make API requests
 import styles from './Header.module.css';
 import logo_main from '../../assets/logo.png';
 import icon_search from '../../assets/search-icon.png';
@@ -9,10 +8,8 @@ import avatar from '../../assets/avatar.png';
 const Header = ({ username, setSearchQuery, showSearch = true }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState("");  // Added field for current password
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // To display error messages
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -31,35 +28,17 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
 
   const closePasswordModal = () => {
     setIsPasswordModalOpen(false);
-    setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
-    setErrorMessage(""); // Clear any error messages
   };
 
-  const handleSavePassword = async () => {
+  const handleSavePassword = () => {
     if (newPassword === confirmPassword) {
-      try {
-        const response = await axios.post(
-          'http://localhost:5000/auth/change-password',
-          {
-            currentPassword, // Send current password
-            newPassword,
-          },
-          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } } // Attach JWT token
-        );
-
-        alert(response.data.message);
-        closePasswordModal();
-      } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message); // Display error message from API response
-        } else {
-          setErrorMessage("Error updating password.");
-        }
-      }
+      // Call backend API to update password
+      alert("Password updated successfully");
+      closePasswordModal();
     } else {
-      setErrorMessage("Passwords do not match.");
+      alert("Passwords do not match");
     }
   };
 
@@ -70,8 +49,8 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
 
       {showSearch && (
         <div className={styles.Search_Box}>
-          <input
-            type="text"
+          <input 
+            type="text" 
             placeholder="Search"
             onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
           />
@@ -108,28 +87,20 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
             <button className={styles.closePasswordModal} onClick={closePasswordModal}>×</button>
           </div>
           <div className={styles.passwordModalBody}>
-            <input
-              type="password"
-              placeholder="Enter current password"
-              className={styles.passwordInput}
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Enter new password"
+            <input 
+              type="password" 
+              placeholder="Enter new password" 
               className={styles.passwordInput}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <input
-              type="password"
-              placeholder="Re-enter new password"
+            <input 
+              type="password" 
+              placeholder="Re-enter password" 
               className={styles.passwordInput}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
             <button className={styles.passwordSaveButton} onClick={handleSavePassword}>Save</button>
           </div>
         </div>
