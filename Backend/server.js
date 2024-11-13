@@ -11,10 +11,7 @@ app.use(bodyParser.json());
 
 (async () => {
     try {
-        const { db, usersCollection } = await connectToDB();
-        
-        // Initialize collections
-        const notesCollection = db.collection('notes');
+        const { db, usersCollection, notesCollection } = await connectToDB();
         
         // Import and use authRoutes
         const authRoutes = require('./routes/authRoutes')(usersCollection);
@@ -22,7 +19,7 @@ app.use(bodyParser.json());
         
         // Import and use notesRoutes
         const notesRoutes = require('./routes/notesRoutes')(notesCollection);
-        app.use('/api', notesRoutes);
+        app.use('/notes', notesRoutes);
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}`);
