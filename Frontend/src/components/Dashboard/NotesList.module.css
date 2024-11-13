@@ -1,0 +1,18 @@
+.notesList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* This ensures exactly 4 columns */
+    gap: 15px;
+    padding: 20px;
+    background-color: none;
+    border-radius: 10px;
+}
+
+.notesList > div {
+    transition: transform 0.3s;
+}
+
+.notesList > div:hover {
+    transform: scale(1.05);
+    background-color: #483e63;
+    color: white;
+}

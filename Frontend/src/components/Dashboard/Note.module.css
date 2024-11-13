@@ -1,0 +1,183 @@
+.note {
+    background-color: #483e6394;
+    border-radius: 10px;
+    padding: 1rem;
+    min-height: 170px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.deleteIcon {
+    cursor: pointer;
+}
+
+.deleteIcon:hover {
+    color: rgb(169, 34, 34);
+    transition: color 0.3s ease;
+}
+
+.note:hover {
+    cursor: pointer;
+}
+
+.noteFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.noteTitle {
+    text-align: center;
+    font-weight: 600;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: Large;
+    margin-bottom: 10px;
+}
+
+.heartIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.3em;
+}
+
+.filledHeart {
+    color: rgba(204, 13, 13, 0.897);
+    font-size: 1.5em;
+}
+
+.moveIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.noteContent {
+    display: inline-block;
+    width: 60%;
+    margin-left: 10px;
+    font-size: small;
+}
+
+.moveNoteModal {
+    background-color: #483e63;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.moveNoteHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px; /* Increased size for title */
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.moveNoteHeader .closeModal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.moveNoteHeader .closeModal:hover {
+    color: red;
+    font-weight: bold;
+}
+
+/* .moveNoteCategories {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 5px;
+} */
+
+
+.moveNoteItem {
+    display: flex;
+    align-items: center;
+    font-size: 15px; 
+    font-weight: lighter;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.moveNoteItem input[type="radio"],
+.moveNoteItem input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #000000;
+}
+
+
+.newCategoryButton {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-top: 10px;
+    width: 50px;
+    border-radius: 30px; /* Round button */
+    font-weight: bolder;
+    cursor: pointer;
+    display: inline;
+}
+
+.newCategoryButton:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+.newCategoryInput {
+    width: 70%;
+    padding: 8px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 1px solid #505050;
+    background-color: #ffffff;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.modalFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.moveNoteButton {
+    background-color: #ffffff;
+    border: none;
+    color: #483e63;
+    padding: 8px;
+    border-radius: 20px; 
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    width: 50%;
+}
+
+.moveNoteButton:hover {
+    background-color: #000000;
+    color: #fff;
+}
+

@@ -1,0 +1,66 @@
+.categoryContainer {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 80%; /* Width to control centralization */
+  overflow: hidden; /* Hide scroll if unnecessary */
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto; /* Allow scroll only when needed */
+  scrollbar-width: none; /* Hide scrollbar by default */
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
+
+.categoryList {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.categoryItem {
+  padding: 10px 20px;
+  color: #483e63;
+  border-radius: 20px;
+  min-width: auto;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+.categoryItem:hover{
+  background-color: #483e63;
+  color: white;
+}
+
+.selectedCategory {
+  background-color: #483e63;
+  color: white; /* Change text color for selected */
+}
+
+.addCategory {
+  background-color: #483e63;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.addCategory:hover {
+  background-color: white;
+  color: #483e63;
+}
+
+.sliderButton {
+  display: none; /* Removed button, replaced by scrollbar */
+}

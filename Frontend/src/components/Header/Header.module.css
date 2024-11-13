@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.H-Container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(140, 129, 158);
+    font-weight: 600;
+}
+
+.Header_Class {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #483e63;
+    padding: 8px;
+    border-bottom-left-radius: 20px; /* Adjust the radius value as needed */
+    border-bottom-right-radius: 20px; /* Adjust the radius value as needed */
+}
+
+.logo {
+    width: 120px;
+    height: 100px;
+    cursor: pointer;
+}
+
+/* Title fixed right beside the logo */
+.title {
+    color: aliceblue;
+    font-size: 40px;
+    /* font-family: 'Trebuchet MS', Arial; */
+    margin-left: 20px; /* Spacing between logo and title */
+    margin-right: auto; /* Ensures it stays in place when dropdown opens */
+}
+
+.Search_Box {
+    display: flex;
+    align-items: center;
+    background-color: #5d5673;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.Search_Box input {
+    padding: 6px;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: aliceblue;
+    font-size: 18px;
+}
+
+.Search_Box input::placeholder {
+    color: rgb(194, 193, 193);
+}
+
+.Search_Box img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.Profile_Section {
+    position: relative;
+}
+
+.Profile_Icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.username {
+    color: aliceblue;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.Dropdown {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: #5d5673;
+    backdrop-filter: blur(50%);
+    padding: 20px; /* Increased padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 220px; /* Increased width for more spacious feel */
+    color: #ffffff;
+}
+
+.Dropdown_Name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.Dropdown_Item {
+    padding: 10px 0; /* Increased padding for better readability */
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.Dropdown_Item:hover {
+    font-weight: 600;
+}
+
+hr {
+    border: 0.5px solid rgba(116, 116, 116, 0.5);
+    margin-bottom: 20px; /* Added space after each hr */
+}
+
+.passwordModal {
+    background-color: #483e63;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    width: 320px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.passwordModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.passwordModalHeader .closePasswordModal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.passwordModalHeader .closePasswordModal:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.passwordModalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passwordInput {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #505050;
+    background-color: #ffffff;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.passwordSaveButton {
+    background-color: #5c576b;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.passwordSaveButton:hover {
+    background-color: #8b84a3;
+    color: #ffffff;
+}
