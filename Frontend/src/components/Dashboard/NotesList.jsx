@@ -10,11 +10,16 @@ const NotesList = ({ userId, notes, categories, user, searchQuery, selectedCateg
             const response = await fetch(`http://localhost:5000/notes/getNotes?userId=${userId}`);
             if (!response.ok) throw new Error('Error fetching notes');
             const data = await response.json();
-            setFetchedNotes(data);
+    
+            // Sort notes by `createdAt` in descending order (most recent first)
+            const sortedNotes = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+            setFetchedNotes(sortedNotes);
         } catch (error) {
             console.error(error);
         }
     };
+    
 
     // Function to update the favorite status of a note in the fetchedNotes state
     const updateFavoriteStatus = (noteId, isFavorite) => {
