@@ -8,6 +8,7 @@ import avatar from '../../assets/avatar.png';
 const Header = ({ username, setSearchQuery, showSearch = true }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -28,17 +29,38 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
 
   const closePasswordModal = () => {
     setIsPasswordModalOpen(false);
+    setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
   };
 
-  const handleSavePassword = () => {
-    if (newPassword === confirmPassword) {
-      // Call backend API to update password
-      alert("Password updated successfully");
-      closePasswordModal();
-    } else {
-      alert("Passwords do not match");
+  const handleSavePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      alert("New passwords do not match");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('authToken'); // Ensure token is stored in localStorage
+      const response = await fetch('http://localhost:5000/auth/change-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add JWT token in header
+        },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Password updated successfully");
+        closePasswordModal();
+      } else {
+        alert(data.message || "Failed to update password");
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -89,6 +111,13 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
           <div className={styles.passwordModalBody}>
             <input 
               type="password" 
+              placeholder="Enter current password" 
+              className={styles.passwordInput}
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <input 
+              type="password" 
               placeholder="Enter new password" 
               className={styles.passwordInput}
               value={newPassword}
@@ -96,7 +125,7 @@ const Header = ({ username, setSearchQuery, showSearch = true }) => {
             />
             <input 
               type="password" 
-              placeholder="Re-enter password" 
+              placeholder="Re-enter new password" 
               className={styles.passwordInput}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
